@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import Loader from './components/loader/Loader';
 import LoginPage from './pages/auth/Login';
+import PrivateWrapper from './routes/ProtectedRoute';
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
 function App() {
@@ -32,11 +33,11 @@ function App() {
                   key={path}
                   path={path}
                   element={
-                    // <PrivateWrapper>
+                    <PrivateWrapper>
                       <Suspense fallback={<Loader />}>
                         <Component />
                       </Suspense>
-                    // </PrivateWrapper>
+                    </PrivateWrapper>
                   }
                 />
               ))}
